@@ -12,8 +12,10 @@
 		<PackageTags>NUBAN prediction, bank prediction</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<EnablePackageValidation>true</EnablePackageValidation>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 	<ItemGroup>
+	    <None Include="README.md" Pack="true" PackagePath="\"/>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 	</ItemGroup>
 

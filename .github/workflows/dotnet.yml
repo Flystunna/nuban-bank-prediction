@@ -41,12 +41,6 @@ jobs:
     - name: Run tests
       run: dotnet test --verbosity normal --configuration Release
       
-    - name: Print working directory
-      run: pwd
-
-    - name: List directory contents
-      run: ls -la
-
     - name: Dotnet Pack
       run: dotnet pack NubanBankPredictionLib/NubanBankPredictionLib.csproj --configuration Release --output ${{ env.NuGetDirectory }}
     

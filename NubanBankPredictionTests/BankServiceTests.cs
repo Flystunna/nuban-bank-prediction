@@ -11,7 +11,7 @@ namespace NubanBankPredictionTests
         [TestInitialize]
         public void TestInit()
         {
-            string jsonFilePath = "bankList.json";
+            string jsonFilePath = "BankList.json";
             banks = LoadBanksFromJson(jsonFilePath);
         }
 

@@ -31,6 +31,7 @@ jobs:
       run: dotnet build --no-restore
 
   run_test:
+    needs: [ build ]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -45,7 +46,7 @@ jobs:
     needs: [ run_test ]
     steps:
     - name: Dotnet Pack
-      run: dotnet pack NubanBankPredictionLib.csproj --configuration Release --output ${{ env.NuGetDirectory }}
+      run: dotnet pack NubanBankPredictionLib/NubanBankPredictionLib.csproj --configuration Release --output ${{ env.NuGetDirectory }}
     
     - uses: actions/upload-artifact@v3
       with:

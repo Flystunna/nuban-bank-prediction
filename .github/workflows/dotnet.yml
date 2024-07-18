@@ -45,7 +45,7 @@ jobs:
     needs: [ run_test ]
     steps:
     - name: Dotnet Pack
-      run: dotnet pack --configuration Release --output ${{ env.NuGetDirectory }}
+      run: dotnet pack NubanBankPredictionLib.csproj --configuration Release --output ${{ env.NuGetDirectory }}
     
     - uses: actions/upload-artifact@v3
       with:

@@ -30,7 +30,7 @@ jobs:
       run: echo "VERSION=${TAG#v}" >> $GITHUB_ENV 
       
     - name: Restore dependencies    
-      run: dotnet restore
+      run: dotnet restore 
       
     - name: Build
       run: dotnet build --no-restore /p:Version=$VERSION

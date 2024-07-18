@@ -1,13 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<PackageId>Nuban.Bank.Prediction</PackageId>
+		<Title>Nuban.Bank.Prediction</Title>
+		<Authors>Olorundara Komolafe</Authors>
+		<Description>A library that can predict possible banks associated with a given Nigeria Uniform Bank Account Number (NUBAN)</Description>
+		<PackageProjectUrl>https://03balogun.medium.com/nuban-bank-suggestion-algorithm-implementation-and-recommendations-ac0f13d2ce4c</PackageProjectUrl>
+		<PackageTags>NUBAN prediction, bank prediction</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<EnablePackageValidation>true</EnablePackageValidation>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	</ItemGroup>
 
 </Project>

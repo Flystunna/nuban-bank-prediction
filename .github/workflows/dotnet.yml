@@ -30,7 +30,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
 
-  run_test:
+  run_test_and_pack:
     needs: [ build ]
     runs-on: ubuntu-latest
     steps:
@@ -41,12 +41,8 @@ jobs:
     - name: Run tests
       run: dotnet test --verbosity normal --configuration Release
 
-  nuget_pack:
-    runs-on: ubuntu-latest
-    needs: [ run_test ]
-    steps:
     - name: Dotnet Pack
-      run: dotnet pack NubanBankPredictionLib/NubanBankPredictionLib.csproj --configuration Release --output ${{ env.NuGetDirectory }}
+      run: dotnet pack NubanBankPredictionLib.csproj --configuration Release --output ${{ env.NuGetDirectory }}
     
     - uses: actions/upload-artifact@v3
       with:
@@ -58,7 +54,7 @@ jobs:
   deploy:
     if: github.event_name == 'release'
     runs-on: ubuntu-latest
-    needs: [ nuget_pack ]
+    needs: [ run_test_and_pack ]
     steps:
     # Download the NuGet package created in the previous job
     - uses: actions/download-artifact@v3

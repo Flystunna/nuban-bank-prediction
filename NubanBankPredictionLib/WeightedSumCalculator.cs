@@ -1,4 +1,7 @@
-﻿namespace NubanBankPredictionLib
+﻿using System;
+using System.Linq;
+
+namespace NubanBankPredictionLib
 {
     public class WeightedSumCalculator
     {

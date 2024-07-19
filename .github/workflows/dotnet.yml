@@ -28,7 +28,7 @@ jobs:
       env:
         TAG: ${{ github.ref_name }}
       run: echo "VERSION=${TAG#v}" >> $GITHUB_ENV 
-      
+
     - name: Restore dependencies    
       run: dotnet restore 
       
@@ -46,9 +46,12 @@ jobs:
     - name: Run tests
       run: dotnet test --verbosity normal --configuration Release
 
-    # - name: Set VERSION variable from tag
-    #   run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
-
+    - name: Set Version Variable
+      if: ${{ github.ref_type == 'tag' }}
+      env:
+        TAG: ${{ github.ref_name }}
+      run: echo "VERSION=${TAG#v}" >> $GITHUB_ENV 
+      
     - name: Dotnet Pack
       run: dotnet pack NubanBankPredictionLib/NubanBankPredictionLib.csproj --configuration Release --output ${{ env.NuGetDirectory }} /p:PackageVersion=$VERSION
     

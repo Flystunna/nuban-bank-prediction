@@ -4,21 +4,32 @@ namespace NubanBankPredictionLib
 {
     public static class BankService
     {
-        public static List<Bank> GetPossibleBanks(string accountNumber, List<Bank>? banks = null)
+        public static async Task<List<Bank>> GetPossibleBanks(string accountNumber, List<Bank>? banks = null)
         {
             if (banks == null)
             {
-                banks = LoadBanksFromJson("BankList.json");
+                banks = await LoadBanksFromJson();
             }
             return banks.Where(bank => BankAccountValidator.IsBankAccountValid(accountNumber, bank.Code)).ToList();
         }
-        public static List<Bank> LoadBanksFromJson(string filePath)
+        public static async Task<List<Bank>> LoadBanksFromJson()
         {
-            // Read the JSON file
-            string jsonString = File.ReadAllText(filePath);
-            // Deserialize the JSON data
-            var bankList = JsonConvert.DeserializeObject<BankList>(jsonString);
-            return bankList?.Data ?? new List<Bank>();
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+
+                    HttpResponseMessage response = await client.GetAsync("https://raw.githubusercontent.com/flystunna/nuban-bank-prediction/master/NubanBankPredictionLib/BankList.json");
+                    response.EnsureSuccessStatusCode();
+                    string jsonData = await response.Content.ReadAsStringAsync();
+                    BankList banks = JsonConvert.DeserializeObject<BankList>(jsonData) ?? new BankList();
+                    return banks.Data ?? new List<Bank>();
+                }
+            }
+            catch (Exception)
+            {
+                return new List<Bank>();
+            }
         }
     }
 }

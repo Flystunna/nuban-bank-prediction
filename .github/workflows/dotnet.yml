@@ -51,7 +51,7 @@ jobs:
       env:
         TAG: ${{ github.ref_name }}
       run: echo "VERSION=${TAG#v}" >> $GITHUB_ENV 
-      
+
     - name: Dotnet Pack
       run: dotnet pack NubanBankPredictionLib/NubanBankPredictionLib.csproj --configuration Release --output ${{ env.NuGetDirectory }} /p:PackageVersion=$VERSION
     
@@ -61,6 +61,9 @@ jobs:
         if-no-files-found: error
         retention-days: 7
         path: ${{ env.NuGetDirectory }}/*.nupkg
+
+    - name: Push to NuGet
+      run: dotnet nuget push ${{ env.NuGetDirectory }}/*.nupkg --api-key ${{ secrets.NUGETKEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
   deploy:
     if: github.ref_type == 'tag' && startsWith(github.ref, 'refs/tags/v')

@@ -8,13 +8,25 @@
 		<Title>Nuban.Bank.Prediction</Title>
 		<Authors>Olorundara Komolafe</Authors>
 		<Description>A library that can predict possible banks associated with a given Nigeria Uniform Bank Account Number (NUBAN)</Description>
-		<PackageProjectUrl>https://03balogun.medium.com/nuban-bank-suggestion-algorithm-implementation-and-recommendations-ac0f13d2ce4c</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/Flystunna/nuban-bank-prediction</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Flystunna/nuban-bank-prediction</RepositoryUrl>	
+		<RepositoryType>git</RepositoryType>	
 		<PackageTags>NUBAN prediction, bank prediction</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<EnablePackageValidation>true</EnablePackageValidation>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 	<ItemGroup>
+	    <None Include="README.md" Pack="true" PackagePath="\" />
+		<None Update="BankList.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Update="BankList.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>

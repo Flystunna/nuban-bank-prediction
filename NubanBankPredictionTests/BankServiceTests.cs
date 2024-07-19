@@ -11,9 +11,23 @@ namespace NubanBankPredictionTests
         [TestInitialize]
         public void TestInit()
         {
-            string jsonFilePath = "bankList.json";
+            string jsonFilePath = "BankList.json";
             banks = LoadBanksFromJson(jsonFilePath);
         }
+
+        [TestMethod]
+        public void ShouldReturnArrayOfBanksForValidAccountNumberWithoutPassingListOfBanks()
+        {
+            // Arrange
+            string accountNumber = "0010246780";
+            // Act
+            var result = BankService.GetPossibleBanks(accountNumber);
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(List<Bank>));
+            Assert.IsTrue(result.Count > 0);
+            Assert.IsTrue(result.All(bank => bank.Name != null && bank.Code != null));
+        }
+
 
         [TestMethod]
         public void ShouldReturnArrayOfBanksForValidAccountNumber()

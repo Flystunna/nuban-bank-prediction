@@ -5,7 +5,9 @@ It validates NUBAN account numbers and provides possible banks that could own th
 
 This implementation is based on the Central Bank of Nigeria's [REVISED STANDARDS ON NIGERIA UNIFORM BANK ACCOUNT NUMBER (NUBAN) SCHEME FOR DEPOSIT MONEY BANKS (DMBs) AND OTHER FINANCIAL INSTITUTIONS (OFIs) IN NIGERIA - MAR 2020](https://www.cbn.gov.ng/out/2020/psmd/revised%20standards%20on%20nigeria%20uniform%20bank%20account%20number%20(nuban)%20for%20banks%20and%20other%20financial%20institutions%20.pdf).
 
-Credits to https://github.com/03balogun for this idea
+Credits to https://github.com/03balogun for this idea and be sure to clap on the medium article detailing usage:
+
+https://medium.com/@Daradev/a-nuban-bank-prediction-library-for-the-nigerian-banking-system-f15a1b8b9171
 
 ## Usage
 

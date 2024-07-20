@@ -42,3 +42,34 @@ Output example:
     "code": "011"
   }
 ]
+```
+
+You can also pass your own custom list of banks to the GetPossibleBanks method. The custom list should be an array of objects that match the Bank model. The bank model looks like this:
+
+
+```C#
+public class Bank
+{
+    [JsonProperty("name")]
+    public string Name { get; set; }
+
+    [JsonProperty("code")]
+    public string Code { get; set; }
+
+    public Bank(string name, string code)
+    {
+      Name = name ?? throw new ArgumentNullException(nameof(name));
+      Code = code ?? throw new ArgumentNullException(nameof(code));
+    }
+}
+```
+
+Here's an example:
+
+```C#
+var bankList = new List<Bank>(); //this should be your custom bank list
+
+// Returns array of possible banks
+var banks = BankService.GetPossibleBanks("0010246780", bankList);
+```
+
